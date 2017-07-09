@@ -41,8 +41,6 @@ impl <'muon> MuonLib<'muon> {
       transport: transport
     }
   }
-
-
 }
 
 impl <'muon> Muon<'muon> for MuonLib<'muon> {

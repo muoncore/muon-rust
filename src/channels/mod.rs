@@ -1,4 +1,8 @@
 
+extern crate atomic_ring_buffer;
+
+use self::atomic_ring_buffer::AtomicRingBuffer;
+use self::atomic_ring_buffer::InvariantAsMut;
 
 pub trait ChannelConnection<'channel> {
 
@@ -10,7 +14,8 @@ pub trait ChannelConnection<'channel> {
 //}
 
 struct SimpleChannelConnection<'channel> {
-  dispatch: &'channel Fn() -> ()
+  dispatch: &'channel Fn() -> (),
+//  buf: Box<AtomicRingBuffer<Fn(u32) -> (), Vec<Fn(u32) -> ()>>>
 }
 
 //impl <'channel, GoingLeft, GoingRight> Channel<'channel, GoingLeft, GoingRight> {
