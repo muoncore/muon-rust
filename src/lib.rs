@@ -1,12 +1,16 @@
 extern crate libc;
 #[macro_use]
 extern crate log;
+#[macro_use]
+extern crate lazy_static;
+extern crate atomic_ring_buffer;
 
 mod client;
 mod channels;
 pub mod discovery;
 pub mod transport;
 pub mod stack;
+pub mod dispatcher;
 
 use client::TransportClient;
 use channels::ChannelConnection;

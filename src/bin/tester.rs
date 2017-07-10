@@ -1,5 +1,6 @@
 extern crate muon_core;
-extern crate atomic_ring_buffer;
+
+
 
 use muon_core::discovery::Discovery;
 use muon_core::discovery::inmem::InMemDiscovery;
@@ -13,9 +14,6 @@ use muon_core::Muon;
 
 use muon_core::stack::rpc::RpcClient;
 
-use self::atomic_ring_buffer::AtomicRingBuffer;
-use self::atomic_ring_buffer::InvariantAsMut;
-
 use std::sync::atomic::AtomicBool;
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -23,9 +21,24 @@ use std::rc::Rc;
 
 use std::{thread, time};
 
+use muon_core::dispatcher::dispatch;
+
+
 fn main() {
 
-//
+//  let dispatch = Dispatcher::create();
+
+  dispatch(|| println!("HELLO WORLD!"));
+
+  let producer = thread::spawn(move || {
+    for x in 1..500 {
+      dispatch(|| println!("WOOTISH") );
+      thread::sleep(time::Duration::from_millis(10));
+    }
+  });
+
+
+  //
 //  let mut disco = Box::new(InMemDiscovery {});
 //  let mut transport = Box::new(InMemTransport {});
 //  let mut muon = MuonLib::create(disco, transport);
@@ -39,6 +52,7 @@ fn main() {
 //    othermuon.disco();
 //  }
 
+  /*
   let mut vec: Vec<Arc<FnMut(u32)->()+Send+Sync>> = Vec::new();
 
   for x in 1..1024 {
@@ -58,7 +72,7 @@ fn main() {
     loop {
       c += 1;
       consumerbuf.dequeue(|x| Arc::get_mut(x).unwrap()(c));
-      thread::yield_now();
+      //todo, check the return. if err, park for 1ms.
       thread::park_timeout_ms(1);
     }
   });
@@ -76,7 +90,29 @@ fn main() {
       thread::sleep(time::Duration::from_millis(5));
     }
   });
+*/
+  thread::sleep(time::Duration::from_millis(2000));
 
-  thread::sleep(time::Duration::from_millis(20000));
+  /*
+
+  Wrap in API to make this sane.
+
+  Add in a MuonMessage struct and see how we can dispatch those.
+     send(Box<MuonMessage>)
+
+  In a channel execute
+
+
+  fn send(msg: MuonMessage) {
+     dispatcher.enqueue(|| left(MuonMessage{}))
+  }
+
+  , invoke the stored receive(Fn)
+
+  remove the u32 param. just functions that can be dispatched without params.
+
+
+   **/
+
 
 }
