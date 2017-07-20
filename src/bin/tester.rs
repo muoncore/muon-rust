@@ -21,21 +21,32 @@ use std::rc::Rc;
 
 use std::{thread, time};
 
-use muon_core::dispatcher::dispatch;
+use muon_core::channels::channel;
+use muon_core::channels::Channel;
 
+use std::path::Path;
 
 fn main() {
 
+  let mut channel: Arc<Channel<u32, u32>> = channel();
+
+  let mut c = Arc::get_mut(&mut channel).unwrap();
+
+  Rc::get_mut(&mut c.left).unwrap().receive(Rc::new(|x| println!("HELLO WOR£LD")));
+  Rc::get_mut(&mut c.right).unwrap().receive(Rc::new(|x| println!("HELLO WOR£LD")));
+
+  c.left.send(12);
+
 //  let dispatch = Dispatcher::create();
 
-  dispatch(|| println!("HELLO WORLD!"));
-
-  let producer = thread::spawn(move || {
-    for x in 1..500 {
-      dispatch(|| println!("WOOTISH") );
-      thread::sleep(time::Duration::from_millis(10));
-    }
-  });
+//  dispatch(|| println!("HELLO WORLD!"));
+//
+//  let producer = thread::spawn(move || {
+//    for x in 1..500 {
+//      dispatch(|| println!("WOOTISH") );
+//      thread::sleep(time::Duration::from_millis(10));
+//    }
+//  });
 
 
   //

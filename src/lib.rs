@@ -6,7 +6,7 @@ extern crate lazy_static;
 extern crate atomic_ring_buffer;
 
 mod client;
-mod channels;
+pub mod channels;
 pub mod discovery;
 pub mod transport;
 pub mod stack;

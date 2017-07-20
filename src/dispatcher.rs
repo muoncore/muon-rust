@@ -10,7 +10,7 @@ use std::{thread, time};
 
 /*
  An async event dispatch function
- Based on a single consumer thread spinning on a ringbuffer.
+ Based on a single consumer thread spinning on a ringbuffer to invoke the passed FnMuts and then dispose
 */
 
 pub fn dispatch<T: FnMut()>(mut exec: T) where T: FnMut()->()+Send+Sync+'static {
