@@ -4,9 +4,9 @@
 | image:https://img.shields.io/github/tag/muoncore/muon-rust.svg[]
 |===
 
-# Muon Core - Java
+# Muon Core - Rust
 
-This repo contains the JVM implementation of Muon Core.
+This repo contains the Rust implementation of Muon Core.
 
 ## What is Muon?
 
@@ -14,13 +14,13 @@ Microservices today are optimised for building systems that can continue to chan
 
 RPC is a fairly simplistic model for integration, with well known flaws and foibles. The other options, messaging and event collaboration are much harder to get started with, and so are often avoided until the "v2 rewrite". Muon lets you adopt messaging and events from the start of a project, by making it easy to do the right thing with them.
 
-Muon is fully polyglot, give you very well defined, easy to use apis that take advantage of messaging, and eventing, to recompose your distributed system in highly performant, rich communication styles, beyond RPC.
+Muon is fully polyglot, gives you very well defined, easy to use apis that take advantage of messaging, and eventing, to recompose your distributed system in highly performant, rich communication styles, beyond RPC.
 
 ## What is Muon Core?
 
 Muon is a modular system, allowing it to be easily extended to take advantage of the best of breed technologies and leverage what you may call "legacy", giving it a new lease of life and protecting your investment.
 
-Muon Core is the library that defines the central programming model of the system. It creates channel based communicaiton between microservices, enabling message based communication to happen. Each runtime we support has its own implementation of Muon Core. This repository is for the JVM.
+Muon Core is the library that defines the central programming model of the system. It creates channel based communication between microservices, enabling message based communication to happen. Each runtime we support has its own implementation of Muon Core. This repository is for the JVM.
 
 It can be extended by adding one of more of:-
 
@@ -31,7 +31,7 @@ It can be extended by adding one of more of:-
 
 ## Using Muon Rust
 
-To use Muon, you need to use Muon Core, a transport, a discovery and one or more protocol stacks.
+To use Muon, you need to use Muon Core + a transport + a discovery and one or more protocol stacks.
 
 TODO - how to config cargo build
 
