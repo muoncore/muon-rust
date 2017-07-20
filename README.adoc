@@ -6,7 +6,7 @@
 
 # Muon Core - Rust
 
-This repo contains the Rust implementation of Muon Core.
+This repo contains the Rust implementation of Muon Core. It is *pre-alpha*. It doesn't work yet.  If you need a working version of Muon Core, see link:https://github.com/muoncore/muon-java/[Muon Java] and link:https://github.com/muoncore/muon-node[Muon Node]
 
 ## What is Muon?
 
